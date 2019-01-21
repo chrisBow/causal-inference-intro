@@ -28,7 +28,7 @@ babynames %>%
   ggplot(aes(x = year,
              y = n)) +
   geom_line() +
-  labs(title = "Number of Girls Called Anya",
+  labs(title = "Number of Girls Born and Called Anya in the USA by Year",
        x = "Year",
        y = "Number") +
   theme_chris()
@@ -82,11 +82,12 @@ buffy_names_2 <-
   spread(name, n)
 
 
-# create dataframe for CausalImpact with target variable 1st
+# create dataframe for CausalImpact with target variable (Anya) as first column (year to be removed)
 
 buffy_names_3 <-
   buffy_names_2 %>%
-  dplyr::select(year, Anya, Aleah, Carmella, Cheryl, Jordan, Stacey)
+  dplyr::select(year, Anya, Aleah, Carmella, Cheryl, Jordan,
+                Kathryn, Kiera, Kylee, Raelyn, Stacey)
 
 
 # convert to xts time series
@@ -110,6 +111,7 @@ post_period <- as.Date(c("2004-01-01", "2017-01-01"))
 buffy_causal <- CausalImpact(buffy_names_4, 
                              pre.period = pre_period, 
                              post.period = post_period)
+
 plot(buffy_causal, "original")
 summary(buffy_causal)
 summary(buffy_causal, "report")

@@ -4,7 +4,6 @@ library(dplyr)
 library(CausalImpact)
 library(babynames)
 library(ggplot2)
-library(lubridate)
 library(tidyr)
 library(xts)
 
@@ -18,7 +17,21 @@ source("theme_chris.R")
 
 glimpse(babynames)
 
-max(babynames$year)
+summary(babynames$year)
+
+
+# Look at girls called Anya trend
+
+babynames %>%
+  filter(sex == "F") %>%
+  filter(name == "Anya") %>%
+  ggplot(aes(x = year,
+             y = n)) +
+  geom_line() +
+  labs(title = "Number of Girls Called Anya",
+       x = "Year",
+       y = "Number") +
+  theme_chris()
 
 
 # select girls' names at random to use as controls

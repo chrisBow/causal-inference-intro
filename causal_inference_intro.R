@@ -103,7 +103,7 @@ head(buffy_names_4)
 # create pre and post periods
 
 pre_period <- as.Date(c("1980-01-01", "1998-01-01"))
-post_period <- as.Date(c("2004-01-01", "2017-01-01"))
+post_period <- as.Date(c("1998-01-02", "2003-12-31"))
 
 
 # perform causal inference analysis
